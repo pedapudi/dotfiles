@@ -96,14 +96,22 @@
 (defun fixme-register-keyword-re ()
   "Generate the regular expression string from fixme-highlighted-words
 and store the result in fixme-keyword-re-string"
-  (lexical-let ((num-words (length fixme-highlighted-words))
+  (lexical-let ((num-words (+ (length fixme-highlighted-words)
+			      (length fixme-error-highlighted-words)))
                 (word-count 0))
     (setq fixme-keyword-re-string "")
     (dolist (word fixme-highlighted-words)
       (incf word-count)
       (setq fixme-keyword-re-string (concat fixme-keyword-re-string word))
       (when (< word-count num-words) ;;only add the OR in if we're not at the end
+        (setq fixme-keyword-re-string (concat fixme-keyword-re-string "\\|"))))
+    (dolist (word fixme-error-highlighted-words)
+      (incf word-count)
+      (setq fixme-keyword-re-string (concat fixme-keyword-re-string word))
+      (when (< word-count num-words) ;;only add the OR in if we're not at the end
         (setq fixme-keyword-re-string (concat fixme-keyword-re-string "\\|"))))))
+
+
 
 (defun fixme-register-font-lock-keywords ()
   "Generate the font-lock keywords from fixme-highlighted-words
