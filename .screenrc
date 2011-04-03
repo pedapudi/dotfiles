@@ -1,0 +1,4 @@
+escape ^zZ
+bind 2 split
+bind 3 split -v
+bind o focus
