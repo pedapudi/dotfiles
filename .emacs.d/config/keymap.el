@@ -31,6 +31,10 @@
 
 (global-set-key [f11] 'toggle-fullscreen)
 
-(global-set-key "\C-c\C-k" 'copy-line)
-;;;; end set-key maps
+(global-set-key (kbd "C-c C-k") 'copy-line)
 
+;;by default, the next two keybindings are switched
+(global-set-key (kbd "C-a") 'back-to-indentation)
+
+(global-set-key (kbd "M-m") 'beginning-of-line)
+;;;; end set-key maps
