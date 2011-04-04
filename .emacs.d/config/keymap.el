@@ -9,7 +9,7 @@
         (intern
          (ido-completing-read
           "M-x "
-          (all-completions "" obarray 'commandp))))))
+	  (all-completions "" obarray 'commandp))))))
 ;;end M-x mode for ido
 
 ;;begin navigation
@@ -32,6 +32,8 @@
 (global-set-key [f11] 'toggle-fullscreen)
 
 (global-set-key (kbd "C-c C-k") 'copy-line)
+
+(global-set-key (kbd "RET") 'reindent-then-newline-and-indent)
 
 ;;by default, the next two keybindings are switched
 (global-set-key (kbd "C-a") 'back-to-indentation)
