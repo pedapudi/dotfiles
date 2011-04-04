@@ -1,4 +1,5 @@
 (defun load-usr-config () 
+  (load-file "~/.emacs.d/config/loadfiles.el")
   (load-file "~/.emacs.d/config/setvalues.el")
   (load-file "~/.emacs.d/config/modes.el")
   (load-file "~/.emacs.d/config/defuns.el")

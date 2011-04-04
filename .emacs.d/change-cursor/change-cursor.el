@@ -4,7 +4,7 @@
   "change cursor color according to some minor modes."
   ;; set-cursor-color is somewhat costly, so we only call it when needed:
   (let ((color
-	 (if buffer-read-only "gold"
+	 (if buffer-read-only "goldenrod"
 	   (if overwrite-mode "firebrick"
 	     "gray"))))
     (unless (and
