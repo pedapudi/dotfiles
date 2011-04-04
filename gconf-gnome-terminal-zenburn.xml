@@ -1,6 +1,15 @@
 <!-- place this file in 
 ~/.gconf/apps/gnome-terminal/profiles/Profile<num>
-you will probably need to rename it to %gconf.xml -->
+you will probably need to rename it to %gconf.xml 
+
+if that doesn't work, then just run 
+$ gconf-editor
+
+and navigate to apps/gnome-terminal
+find palette
+replace existing text with the following sans quotes
+"#7D7D7A7A7A7A:#FFFF00000000:#47A67C8FDDDA:#CFF0A8D065F9:#A20475B05823:#B2EC5D975D97:#7F7F9F9F7F7F:#000000000000:#3F3F3F3F3F3F:#FFFFCFCFCFCF:#27B15A76B223:#F022DEB7C1B0:#DFDFAFAF8F8F:#CCCC93939393:#368578293685:#DCDCDCDCCCCC"
+-->
 
 <?xml version="1.0"?>
 <gconf>
