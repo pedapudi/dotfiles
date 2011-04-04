@@ -1,0 +1,8 @@
+(defun load-usr-config () 
+  (load-file "~/.emacs.d/config/setvalues.el")
+  (load-file "~/.emacs.d/config/modes.el")
+  (load-file "~/.emacs.d/config/defuns.el")
+  (load-file "~/.emacs.d/config/hooks.el")
+  (load-file "~/.emacs.d/config/keymap.el")
+  (load-file "~/.emacs.d/config/misc.el"))
+(provide 'load-usr-config)
