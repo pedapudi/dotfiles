@@ -12,7 +12,7 @@
 
 ;; edited by sunil pedapudi 2011 to support
 ;; different fixme modes simultaneously
-;; currently has: fixme-mode and fixme-error-mode
+;; currently has: fixme-mode fixme-error-mode fixme-revise-mode
 
 (require 'cl)
 
@@ -28,8 +28,12 @@
                                   slime-mode common-lisp-mode c++-mode d-mode
                                   js2-mode haskell-mode tuareg-mode lua-mode
                                   pascal-mode fortran-mode prolog-mode asm-mode
-                                  csharp-mode sml-mode)
+                                  csharp-mode sml-mode scala-mode)
   "The modes which fixme should apply to"
+  :group 'fixme-mode)
+
+(defcustom fixme-revise-highlighted-words '("DONE" "REFACTOR")
+  "Words to highlight"
   :group 'fixme-mode)
 
 (defcustom fixme-highlighted-words '("TODO" "KLUDGE")
@@ -56,6 +60,14 @@
   "Font background color"
   :group 'fixme-mode)
 
+(defcustom fixme-revise-foreground-color "Black"
+  "Font foreground colour"
+  :group 'fixme-mode)
+
+(defcustom fixme-revise-background-color  "Green"
+  "Font background color"
+  :group 'fixme-mode)
+
 (defvar fixme-keyword-re-string "" 
   "The regular expression to use for searching for fixme words. Generated with fixme-register-keyword-re")
 
@@ -65,8 +77,12 @@
 (defvar fixme-error-keyword-font-lock '()
   "Font lock keywords. Generated from fixme-register-font-lock-keywords")
 
+(defvar fixme-revise-keyword-font-lock '()
+  "Font lock keywords. Generated from fixme-register-font-lock-keywords")
+
 (make-face 'font-lock-fixme-face)
 (make-face 'font-lock-fixme-error-face)
+(make-face 'font-lock-fixme-revise-face)
 
 (defun fixme-next ()
   "Goto the next fixme highlighted word"
@@ -97,20 +113,18 @@
   "Generate the regular expression string from fixme-highlighted-words
 and store the result in fixme-keyword-re-string"
   (lexical-let ((num-words (+ (length fixme-highlighted-words)
-			      (length fixme-error-highlighted-words)))
+			      (length fixme-error-highlighted-words)
+			      (length fixme-revise-highlighted-words)))
                 (word-count 0))
     (setq fixme-keyword-re-string "")
-    (dolist (word fixme-highlighted-words)
-      (incf word-count)
-      (setq fixme-keyword-re-string (concat fixme-keyword-re-string word))
-      (when (< word-count num-words) ;;only add the OR in if we're not at the end
-        (setq fixme-keyword-re-string (concat fixme-keyword-re-string "\\|"))))
-    (dolist (word fixme-error-highlighted-words)
+    (dolist (word (append fixme-highlighted-words
+			(append fixme-revise-highlighted-words
+				fixme-error-highlighted-words)))
       (incf word-count)
       (setq fixme-keyword-re-string (concat fixme-keyword-re-string word))
       (when (< word-count num-words) ;;only add the OR in if we're not at the end
         (setq fixme-keyword-re-string (concat fixme-keyword-re-string "\\|"))))))
-
+    
 
 
 (defun fixme-register-font-lock-keywords ()
@@ -120,6 +134,10 @@ and store the result in fixme-keyword-font-lock"
     (dolist (word fixme-highlighted-words)
       (setq stuff (append stuff `((,(concat "\\<\\(" word "\\)") 1 'font-lock-fixme-face t)))))
     (setq fixme-keyword-font-lock stuff))
+  (lexical-let ((revise-stuff '()))
+    (dolist (word fixme-revise-highlighted-words)
+      (setq revise-stuff (append revise-stuff `((,(concat "\\<\\(" word "\\)") 1 'font-lock-fixme-revise-face t)))))
+    (setq fixme-revise-keyword-font-lock revise-stuff))
   (lexical-let ((error-stuff '()))
     (dolist (word fixme-error-highlighted-words)
       (setq error-stuff (append error-stuff `((,(concat "\\<\\(" word "\\)") 1 'font-lock-fixme-error-face t)))))
@@ -136,14 +154,22 @@ listed in fixme-modes"
   (mapc (lambda (mode)
           (font-lock-add-keywords
            mode
+           fixme-revise-keyword-font-lock))
+        fixme-modes)
+  (mapc (lambda (mode)
+          (font-lock-add-keywords
+           mode
            fixme-keyword-font-lock))
         fixme-modes)
   (make-face 'font-lock-fixme-face)
   (modify-face 'font-lock-fixme-face fixme-foreground-color
-                fixme-background-color nil t nil t nil nil)
+	       fixme-background-color nil t nil t nil nil)
+  (make-face 'font-lock-fixme-revise-face)
+  (modify-face 'font-lock-fixme-revise-face fixme-revise-foreground-color
+	       fixme-revise-background-color nil t nil t nil nil)
   (make-face 'font-lock-fixme-error-face)
   (modify-face 'font-lock-fixme-error-face fixme-error-foreground-color
-                fixme-error-background-color nil t nil t nil nil))
+	       fixme-error-background-color nil t nil t nil nil))
 
 (defun fixme-remove-keywords ()
   "Remove the font-lock keywords from fixme-keyword-font-lock with the modes
