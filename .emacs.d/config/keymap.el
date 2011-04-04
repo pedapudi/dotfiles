@@ -35,7 +35,7 @@
 
 (global-set-key (kbd "RET") 'reindent-then-newline-and-indent)
 
-(global-set-key (kbd "C-i") 'overwrite-mode)
+(global-set-key (kbd "C-o") 'overwrite-mode) ; C-o by default does 'open-line
 
 ;;by default, the next two keybindings are switched
 (global-set-key (kbd "C-a") 'back-to-indentation)
