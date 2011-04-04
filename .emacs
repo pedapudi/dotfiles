@@ -7,7 +7,6 @@
 
 ;;;; begin require statements
 (require 'color-theme-zenburn)
-(require 'color-theme-thor)
 (require 'scala-mode-auto)
 (require 'fixme-mode) ;NOTE when a new mode is added, need to edit fixme-mode.el
 ;(require 'column-marker)
@@ -39,6 +38,9 @@
 (setq tramp-default-method "ssh")
 
 (fset 'yes-or-no-p 'y-or-n-p)
+
+(set-face-font 'default "ProggyCleanTT")
+(set-face-attribute 'default nil :height 120)
 ;;;; end set default values
 
 ;;;; begin defuns
@@ -179,8 +181,7 @@ otherwise raises an error."
 
 
 ;; begin color theme
-;(color-theme-zenburn)
-(color-theme-thor)
+(color-theme-zenburn)
 ;; end color theme
 
 ;; begin modes list
@@ -210,12 +211,12 @@ otherwise raises an error."
 
 ;;;; begin default face 
 ;; used when color-theme is not used
-(custom-set-faces
- '(default ((t (:inherit nil :stipple nil :background "gray2" 
-                         :foreground "white" :inverse-video nil 
-                         :box nil :strike-through nil :overline nil 
-                         :underline nil :slant normal :weight normal 
-                         :height 98 :width normal :foundry "unknown" 
-                         :family "DejaVu Sans Mono"))))
- '(linum ((t (:background "gray10" :foreground "white")))))
+;(custom-set-faces
+; '(default ((t (:inherit nil :stipple nil :background "gray2" 
+;                         :foreground "white" :inverse-video nil 
+;                         :box nil :strike-through nil :overline nil 
+;                         :underline nil :slant normal :weight normal 
+;                         :height 80 :width normal :foundry "unknown" 
+;                         :family "Monospace"))))
+; '(linum ((t (:background "gray10" :foreground "white")))))
 ;;;; end default face
