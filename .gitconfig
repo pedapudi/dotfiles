@@ -2,6 +2,9 @@
 	name = Sunil Pedapudi
 	email = skpedapudi@gmail.com
 
+[core]
+	editor = emacs
+
 [color]
         diff = auto
         status = auto
