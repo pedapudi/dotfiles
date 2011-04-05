@@ -2,14 +2,14 @@
 
 ;;begin M-x mode for ido
 (global-set-key
-     "\M-x"
-     (lambda ()
-       (interactive)
-       (call-interactively
-        (intern
-         (ido-completing-read
-          "M-x "
-	  (all-completions "" obarray 'commandp))))))
+ "\M-x"
+ (lambda ()
+   (interactive)
+   (call-interactively
+    (intern
+     (ido-completing-read
+      "M-x "
+      (all-completions "" obarray 'commandp))))))
 ;;end M-x mode for ido
 
 ;;begin navigation
@@ -33,9 +33,21 @@
 
 (global-set-key (kbd "C-c C-k") 'copy-line)
 
+(global-set-key (kbd "C-%") 'bounce-sexp)
+
 (global-set-key (kbd "RET") 'reindent-then-newline-and-indent)
 
 (global-set-key (kbd "C-o") 'overwrite-mode) ; C-o by default does 'open-line
+
+(global-set-key (kbd "C-S-p") (kbd "<up> TAB"))
+(global-set-key (kbd "C-<up>") (kbd "<up> TAB"))
+
+(global-set-key (kbd "C-S-n") (kbd "<down> TAB"))
+(global-set-key (kbd "C-<down>") (kbd "<down> TAB"))
+
+(global-set-key (kbd "C-<tab>") 'indent-region)
+
+(global-set-key (kbd "C-x C-b") 'electric-buffer-list)
 
 ;;by default, the next two keybindings are switched
 (global-set-key (kbd "C-a") 'back-to-indentation)

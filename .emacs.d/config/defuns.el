@@ -1,5 +1,15 @@
 ;;;; begin defuns
 
+;;;; --- bounces from one sexp "(){}[]<>" to another (ala vi's %)
+(defun bounce-sexp ()
+  "Will bounce between matching parens just like % in vi"
+  (interactive)
+  (let ((prev-char (char-to-string (preceding-char)))
+        (next-char (char-to-string (following-char))))
+        (cond ((string-match "[[{(<]" next-char) (forward-sexp 1))
+                  ((string-match "[\]})>]" prev-char) (backward-sexp 1))
+                  (t (error "%s" "Not on a paren, brace, or bracket")))))
+
 ;; begin tags
 (defun jds-find-tags-file ()
   "recursively searches each parent directory for a file named 'TAGS' and returns the
