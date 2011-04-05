@@ -89,6 +89,7 @@
 
 (require 'color-theme)
 
+(defvar zenburn-fg-1 "#c7c7b1")
 (defvar zenburn-fg "#dcdccc")
 (defvar zenburn-bg-1 "#282828")
 ;;default bg is #3f3f3f
@@ -123,11 +124,11 @@
 
 (eval-after-load 'term
   '(setq ansi-term-color-vector
-	 (vector 'unspecified zenburn-bg
+	 (vector 'unspecified zenburn-bg+2
 		 zenburn-red zenburn-green
 		 zenburn-yellow zenburn-blue+1
 		 zenburn-magenta zenburn-cyan
-		 zenburn-fg)))
+		 zenburn-fg-1)))
 
 (defvar font-lock-pseudo-keyword-face 'font-lock-pseudo-keyword-face)
 (defvar font-lock-operator-face 'font-lock-operator-face)
@@ -277,6 +278,9 @@ static char *gnus-pointer[] = {
 	'(zenburn-highlight-subtle
 	   ((t (:background "#464646"))))
 
+	'(zenburn-linum-subtle
+	  ((t (:background "#262626"))))
+	
 	'(zenburn-lowlight-1 ((t (:foreground "#606060"))))
 	'(zenburn-lowlight-2 ((t (:foreground "#708070"))))
 
@@ -454,6 +458,8 @@ static char *gnus-pointer[] = {
 	'(ido-only-match ((t (:inherit zenburn-primary-2))))
 	`(ido-subdir ((t (:foreground ,zenburn-yellow))))
 
+	`(linum ((t (:inherit zenburn-linum-subtle))))
+	
 	'(icompletep-choices ((t (:foreground "#dcdccc")))) ; zenburn-fg
 	'(icompletep-determined ((t (:foreground "#8FB28F")))) ; zenburn-green+1
 	'(icompletep-nb-candidates ((t (:foreground "#AFD8AF")))) ; zenburn-green+3
