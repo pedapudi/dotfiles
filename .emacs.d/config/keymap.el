@@ -51,8 +51,9 @@
 
 (global-set-key (kbd "C-c C-c") 'comment-or-uncomment-region)
 
-(global-set-key (kbd "C-e") 'compile)
+(global-set-key (kbd "C-S-e") 'compile)
 
+(global-set-key (kbd "RET") (kbd "C-j"))
 ;;by default, the next two keybindings are switched
 (global-set-key (kbd "C-a") 'back-to-indentation)
 
