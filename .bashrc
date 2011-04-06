@@ -15,7 +15,7 @@ prompt_command () {
     elif (( $rts >= 126 && $rts < 255)); then # caught ^C, invalid arg, etc
 	local p="\[\033[1;30m\]>\[\033[0;36m\]>\[\033[1;36m\]>\[\033[m\]"
     fi
-    PS1="\u ${w} ${p} "
+    PS1="\h ${w} ${p} "
 }
 PROMPT_COMMAND=prompt_command
 

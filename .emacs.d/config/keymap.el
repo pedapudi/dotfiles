@@ -49,6 +49,10 @@
 
 (global-set-key (kbd "C-x C-b") 'electric-buffer-list)
 
+(global-set-key (kbd "C-c C-c") 'comment-or-uncomment-region)
+
+(global-set-key (kbd "C-e") 'compile)
+
 ;;by default, the next two keybindings are switched
 (global-set-key (kbd "C-a") 'back-to-indentation)
 
