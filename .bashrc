@@ -1,23 +1,25 @@
-prompt_command () {
-    local rts=$?
-    local w=$(echo "${PWD/#$HOME/~}" | sed 's/.*\/\(.*\/.*\/.*\)$/\1/') # pwd max depth 3
+if [ $TERM != eterm-color ]; then
+    prompt_command () {
+	local rts=$?
+	local w=$(echo "${PWD/#$HOME/~}" | sed 's/.*\/\(.*\/.*\/.*\)$/\1/') # pwd max depth 3
 # pwd max length L, prefix shortened pwd with m
-    local L=30 m='...'
-    [ ${#w} -gt $L ] && { local n=$((${#w} - $L + ${#m}))
-    local w="\[\033[0;32m\]${m}\[\033[0;37m\]${w:$n}\[\033[0m\]" ; } \
-    ||   local w="\[\033[0;37m\]${w}\[\033[0m\]"
+	local L=30 m='...'
+	[ ${#w} -gt $L ] && { local n=$((${#w} - $L + ${#m}))
+	    local w="\[\033[0;32m\]${m}\[\033[0;37m\]${w:$n}\[\033[0m\]" ; } \
+		||   local w="\[\033[0;37m\]${w}\[\033[0m\]"
 # different colors for different return status
-    local p="\[\033[1;30m\]>\[\033[0;32m\]>\[\033[1;32m\]>\[\033[m\]"
-    if (( $rts == 1 || $rts == 2 || $rts >= 255)); then
-	local p="\[\033[1;30m\]>\[\033[0;31m\]>\[\033[1;31m\]>\[\033[m\]"
-    elif (( $rts == 127 )); then # command not found: brown/yellow
-	local p="\[\033[1;30m\]>\[\033[0;34m\]>\[\033[1;34m\]>\[\033[m\]"
-    elif (( $rts >= 126 && $rts < 255)); then # caught ^C, invalid arg, etc
-	local p="\[\033[1;30m\]>\[\033[0;36m\]>\[\033[1;36m\]>\[\033[m\]"
-    fi
-    PS1="\h ${w} ${p} "
-}
-PROMPT_COMMAND=prompt_command
+	local p="\[\033[1;30m\]>\[\033[0;32m\]>\[\033[1;32m\]>\[\033[m\]"
+	if (( $rts == 1 || $rts == 2 || $rts >= 255)); then
+	    local p="\[\033[1;30m\]>\[\033[0;31m\]>\[\033[1;31m\]>\[\033[m\]"
+	elif (( $rts == 127 )); then # command not found: brown/yellow
+	    local p="\[\033[1;30m\]>\[\033[0;34m\]>\[\033[1;34m\]>\[\033[m\]"
+	elif (( $rts >= 126 && $rts < 255)); then # caught ^C, invalid arg, etc
+	    local p="\[\033[1;30m\]>\[\033[0;36m\]>\[\033[1;36m\]>\[\033[m\]"
+	fi
+	PS1="\h ${w} ${p} "
+    }
+    PROMPT_COMMAND=prompt_command
+fi
 
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
