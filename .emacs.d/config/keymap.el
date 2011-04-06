@@ -49,13 +49,18 @@
 
 (global-set-key (kbd "C-x C-b") 'electric-buffer-list)
 
-(global-set-key (kbd "C-c C-c") 'comment-or-uncomment-region)
+(global-set-key (kbd "C-S-c") 'comment-or-uncomment-region)
 
 (global-set-key (kbd "C-S-e") 'compile)
 
 (global-set-key (kbd "RET") (kbd "C-j"))
+
+(global-unset-key (kbd "C-t")) ;; transposes characters by default
+(global-set-key (kbd "C-t") 'visit-ansi-term)
+
 ;;by default, the next two keybindings are switched
 (global-set-key (kbd "C-a") 'back-to-indentation)
 
 (global-set-key (kbd "M-m") 'beginning-of-line)
 ;;;; end set-key maps
+

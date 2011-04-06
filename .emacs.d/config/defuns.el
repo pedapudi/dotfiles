@@ -71,4 +71,14 @@ otherwise raises an error."
       (message "%d line%s copied" arg (if (= 1 arg) "" "s")))
 ;;end copy
 
+(defun visit-ansi-term ()
+  "If we are in an *ansi-term*, rename it.
+If there is no *ansi-term*, run it.
+If there is one running, switch to that buffer."
+  (interactive)
+  (if (equal "*ansi-term*" (buffer-name))
+      (call-interactively 'rename-buffer)
+      (if (get-buffer "*ansi-term*")
+   (switch-to-buffer-other-window "*ansi-term*")
+   (ansi-term "/bin/bash"))))
 ;;;; end defuns
