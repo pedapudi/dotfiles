@@ -1,16 +1,3 @@
-<!-- place this file in 
-~/.gconf/apps/gnome-terminal/profiles/Profile<num>
-you will probably need to rename it to %gconf.xml 
-
-if that doesn't work, then just run 
-$ gconf-editor
-
-and navigate to apps/gnome-terminal
-find palette
-replace existing text with the following sans quotes
-"#7D7D7A7A7A7A:#FFFF00000000:#47A67C8FDDDA:#CFF0A8D065F9:#A20475B05823:#B2EC5D975D97:#7F7F9F9F7F7F:#000000000000:#3F3F3F3F3F3F:#FFFFCFCFCFCF:#27B15A76B223:#F022DEB7C1B0:#DFDFAFAF8F8F:#CCCC93939393:#368578293685:#DCDCDCDCCCCC"
--->
-
 <?xml version="1.0"?>
 <gconf>
 	<entry name="title" mtime="1301792668" type="string">
@@ -24,15 +11,15 @@ replace existing text with the following sans quotes
 	<entry name="custom_command" mtime="1301792668" type="string">
 		<stringvalue></stringvalue>
 	</entry>
-	<entry name="default_show_menubar" mtime="1301884083" type="bool" value="false"/>
+	<entry name="default_show_menubar" mtime="1302065033" type="bool" value="false"/>
 	<entry name="scroll_on_keystroke" mtime="1301792668" type="bool" value="true"/>
-	<entry name="font" mtime="1301884083" type="string">
-		<stringvalue>Monospace 9</stringvalue>
+	<entry name="font" mtime="1302065033" type="string">
+		<stringvalue>Inconsolata Medium 11</stringvalue>
 	</entry>
 	<entry name="scrollback_lines" mtime="1301792668" type="int" value="512"/>
-	<entry name="use_system_font" mtime="1301884083" type="bool" value="false"/>
+	<entry name="use_system_font" mtime="1302065033" type="bool" value="false"/>
 	<entry name="login_shell" mtime="1301792668" type="bool" value="false"/>
-	<entry name="background_color" mtime="1301884083" type="string">
+	<entry name="background_color" mtime="1302065033" type="string">
 		<stringvalue>#080808080808</stringvalue>
 	</entry>
 	<entry name="title_mode" mtime="1301792668" type="string">
@@ -44,30 +31,30 @@ replace existing text with the following sans quotes
 	<entry name="use_skey" mtime="1301792668" type="bool" value="true"/>
 	<entry name="scroll_on_output" mtime="1301792668" type="bool" value="false"/>
 	<entry name="silent_bell" mtime="1301792668" type="bool" value="false"/>
-	<entry name="foreground_color" mtime="1301884083" type="string">
+	<entry name="foreground_color" mtime="1302065033" type="string">
 		<stringvalue>#DCDCDCDCCCCC</stringvalue>
 	</entry>
-	<entry name="alternate_screen_scroll" mtime="1301884083" type="bool" value="true"/>
+	<entry name="alternate_screen_scroll" mtime="1302065033" type="bool" value="true"/>
 	<entry name="background_image" mtime="1301792668" type="string">
 		<stringvalue></stringvalue>
 	</entry>
 	<entry name="delete_binding" mtime="1301792668" type="string">
 		<stringvalue>escape-sequence</stringvalue>
 	</entry>
-	<entry name="palette" mtime="1301884083" type="string">
-		<stringvalue>#7D7D7A7A7A7A:#FFFF00000000:#47A67C8FDDDA:#CFF0A8D065F9:#A20475B05823:#B2EC5D975D97:#7F7F9F9F7F7F:#000000000000:#3F3F3F3F3F3F:#FFFFCFCFCFCF:#27B15A76B223:#F022DEB7C1B0:#DFDFAFAF8F8F:#CCCC93939393:#368578293685:#DCDCDCDCCCCC</stringvalue>
+	<entry name="palette" mtime="1302065033" type="string">
+		<stringvalue>#7D7D7A7A7A7A:#C5DB00000000:#47A67C8FDDDA:#CFF0A8D065F9:#A20475B05823:#B7BD37BE37BE:#8E9342B28D5B:#363678783636:#3F3F3F3F3F3F:#FFFF56B256B2:#27B15A76B223:#EDDAC4B27E6E:#DFDFAFAF8F8F:#E1DF74D674D6:#C8236D86C799:#7F7F9F9F7F7F</stringvalue>
 	</entry>
-	<entry name="visible_name" mtime="1301884083" type="string">
+	<entry name="visible_name" mtime="1302065033" type="string">
 		<stringvalue>zenburn</stringvalue>
 	</entry>
 	<entry name="default_size_columns" mtime="1301792668" type="int" value="80"/>
-	<entry name="bold_color" mtime="1301884083" type="string">
+	<entry name="bold_color" mtime="1302065033" type="string">
 		<stringvalue>#000000000000</stringvalue>
 	</entry>
 	<entry name="scroll_background" mtime="1301792668" type="bool" value="true"/>
 	<entry name="use_custom_default_size" mtime="1301792668" type="bool" value="false"/>
-	<entry name="background_darkness" mtime="1301884083" type="float" value="0"/>
-	<entry name="scrollback_unlimited" mtime="1301884083" type="bool" value="true"/>
+	<entry name="background_darkness" mtime="1302065033" type="float" value="0"/>
+	<entry name="scrollback_unlimited" mtime="1302065033" type="bool" value="true"/>
 	<entry name="word_chars" mtime="1301792668" type="string">
 		<stringvalue>-A-Za-z0-9,./?%&amp;#:_=+@~</stringvalue>
 	</entry>
@@ -79,10 +66,10 @@ replace existing text with the following sans quotes
 	</entry>
 	<entry name="use_custom_command" mtime="1301792668" type="bool" value="false"/>
 	<entry name="allow_bold" mtime="1301792668" type="bool" value="true"/>
-	<entry name="use_theme_background" mtime="1301884083" type="bool" value="false"/>
-	<entry name="use_theme_colors" mtime="1301884083" type="bool" value="false"/>
+	<entry name="use_theme_background" mtime="1302065033" type="bool" value="false"/>
+	<entry name="use_theme_colors" mtime="1302065033" type="bool" value="false"/>
 	<entry name="update_records" mtime="1301792668" type="bool" value="true"/>
-	<entry name="scrollbar_position" mtime="1301884083" type="string">
+	<entry name="scrollbar_position" mtime="1302065033" type="string">
 		<stringvalue>hidden</stringvalue>
 	</entry>
 	<entry name="cursor_shape" mtime="1301792668" type="string">
