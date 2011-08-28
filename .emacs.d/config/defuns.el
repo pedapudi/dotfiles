@@ -71,6 +71,7 @@ otherwise raises an error."
       (message "%d line%s copied" arg (if (= 1 arg) "" "s")))
 ;;end copy
 
+;; begin go-to-terminal
 (defun visit-ansi-term ()
   "If we are in an *ansi-term*, rename it.
 If there is no *ansi-term*, run it.
@@ -81,4 +82,28 @@ If there is one running, switch to that buffer."
       (if (get-buffer "*ansi-term*")
    (switch-to-buffer-other-window "*ansi-term*")
    (ansi-term "/bin/bash"))))
+;; end go-to-terminal
+
+;; I-search with initial contents
+(defvar isearch-initial-string nil)
+
+;; begin isearch for current token
+(defun isearch-set-initial-string ()
+  (remove-hook 'isearch-mode-hook 'isearch-set-initial-string)
+  (setq isearch-string isearch-initial-string)
+  (isearch-search-and-update))
+
+(defun isearch-forward-at-point (&optional regexp-p no-recursive-edit)
+  "Interactive search forward for the symbol at point."
+  (interactive "P\np")
+  (if regexp-p (isearch-forward regexp-p no-recursive-edit)
+    (let* ((end (progn (skip-syntax-forward "w_") (point)))
+           (begin (progn (skip-syntax-backward "w_") (point))))
+      (if (eq begin end)
+          (isearch-forward regexp-p no-recursive-edit)
+        (setq isearch-initial-string (buffer-substring begin end))
+        (add-hook 'isearch-mode-hook 'isearch-set-initial-string)
+        (isearch-forward regexp-p no-recursive-edit)))))
+;; end isearch for current token
 ;;;; end defuns
+
