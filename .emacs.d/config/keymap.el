@@ -35,7 +35,7 @@
 
 (global-set-key (kbd "C-%") 'bounce-sexp)
 
-(global-set-key (kbd "RET") 'reindent-then-newline-and-indent)
+(global-set-key (kbd "RET") 'newline-and-indent)
 
 (global-set-key (kbd "C-o") 'overwrite-mode) ; C-o by default does 'open-line
 
@@ -53,10 +53,11 @@
 
 (global-set-key (kbd "C-S-e") 'compile)
 
-(global-set-key (kbd "RET") (kbd "C-j"))
-
 (global-unset-key (kbd "C-t")) ;; transposes characters by default
 (global-set-key (kbd "C-t") 'visit-ansi-term)
+
+(global-set-key (kbd "C-s") 'isearch-forward-at-point)
+(global-set-key (kbd "C-S-s") 'isearch-forward)
 
 ;;by default, the next two keybindings are switched
 (global-set-key (kbd "C-a") 'back-to-indentation)
