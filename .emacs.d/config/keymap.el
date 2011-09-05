@@ -2,7 +2,7 @@
 
 ;;begin M-x mode for ido
 (global-set-key
- "\M-x"
+ (kbd "M-x")
  (lambda ()
    (interactive)
    (call-interactively
@@ -58,6 +58,11 @@
 
 (global-set-key (kbd "C-s") 'isearch-forward-at-point)
 (global-set-key (kbd "C-S-s") 'isearch-forward)
+
+(global-set-key
+ (kbd "C-c C-y")
+ '(lambda ()
+    (interactive) (popup-menu 'yank-menu))) ;; pop-up menu for kill-ring
 
 ;;by default, the next two keybindings are switched
 (global-set-key (kbd "C-a") 'back-to-indentation)

@@ -12,4 +12,6 @@
 ;; (delete-selection-mode 1)
 (fixme-mode 1)
 (display-time-mode)
+(when (require 'browse-kill-ring nil 'noerror)
+  (browse-kill-ring-default-keybindings))
 ;;;; end enabling/disabling of operating modes

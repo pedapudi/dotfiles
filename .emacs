@@ -13,6 +13,7 @@
 (require 'color-theme-zenburn)
 (require 'scala-mode-auto)
 (require 'fixme-mode) ;NOTE when a new mode is added, need to edit fixme-mode.el
+(require 'browse-kill-ring) ;; provided with emacs-goodies.el
 ;;;; end require statements
 
 ;;begin loading customizations
