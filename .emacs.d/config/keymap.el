@@ -68,10 +68,10 @@
 ;; workflow:
 ;; 1. move marker to word
 ;; 2. search for word: C-s
-;; 4. edit word using C-;
+;; 3. edit word all occurence of word: C-;
 
-(define-key isearch-mode-map (kbd "C-y") 'isearch-yank-kill)
-(define-key isearch-mode-map (kbd "C-;") 'iedit-mode)
+(define-key isearch-mode-map (kbd "C-y") 'isearch-yank-kill) ;; let C-y work intuitively
+(define-key isearch-mode-map (kbd "C-;") 'iedit-mode) ;; drop to iedit-mode from isearch
 
 ;;by default, the next two keybindings are switched
 (global-set-key (kbd "C-a") 'back-to-indentation)
