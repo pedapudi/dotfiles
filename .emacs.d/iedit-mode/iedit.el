@@ -100,6 +100,8 @@ default."
 
 (defvar iedit-mode nil) ;; Name of the minor mode
 
+(defvar iedit-replace-all-occurrences t) ;; If false, change only current word
+
 (make-variable-buffer-local 'iedit-mode)
 
 (or (assq 'iedit-mode minor-mode-alist)
@@ -209,6 +211,7 @@ This is like `describe-bindings', but displays only Iedit keys."
   (define-key iedit-mode-map (kbd "<S-iso-lefttab>") 'iedit-prev-occurrence)
   (define-key iedit-mode-map (kbd "<backtab>") 'iedit-prev-occurrence)
   (define-key iedit-mode-map (kbd "C-'") 'iedit-toggle-unmatched-lines-visible)
+  (define-key iedit-mode-map (kbd "C-o") 'iedit-toggle-replace-all-occurrences)
   (define-key iedit-mode-map (char-to-string help-char) iedit-help-map)
   (define-key iedit-mode-map [help] iedit-help-map)
   (define-key iedit-mode-map [f1] iedit-help-map))
@@ -348,17 +351,19 @@ occurrences if the user starts typing."
 This modification hook is triggered when a user edits any
 occurrence and is responsible for updating all other
 occurrences."
-  (when (and after (not undo-in-progress)) ; undo will do all the work
-    (let ((value (buffer-substring (overlay-start occurrence) (overlay-end occurrence)))
-          (inhibit-modification-hooks t))
-      (save-excursion
-        (dolist (like-occurrence iedit-occurrences-overlays)
-          (if (not (eq like-occurrence occurrence))
-              (progn
-                (goto-char (overlay-start like-occurrence))
-                (delete-region (overlay-start like-occurrence)
-                               (overlay-end like-occurrence))
-                (insert value))))))))
+  (if iedit-replace-all-occurrences
+      (progn
+	(when (and after (not undo-in-progress)) ; undo will do all the work
+	  (let ((value (buffer-substring (overlay-start occurrence) (overlay-end occurrence)))
+		(inhibit-modification-hooks t))
+	    (save-excursion
+	      (dolist (like-occurrence iedit-occurrences-overlays)
+		(if (not (eq like-occurrence occurrence))
+		    (progn
+		      (goto-char (overlay-start like-occurrence))
+		      (delete-region (overlay-start like-occurrence)
+				     (overlay-end like-occurrence))
+		      (insert value))))))))))
 
 (defun iedit-next-occurrence ()
   "Move forward to the next occurrence in the `iedit'.
@@ -422,6 +427,13 @@ the buffer."
   (if iedit-unmatched-lines-invisible
       (iedit-hide-unmatched-lines)
     (remove-overlays (point-min) (point-max) iedit-invisible-overlay-name t)))
+
+(defun iedit-toggle-replace-all-occurrences ()
+  (interactive)
+  (setq iedit-replace-all-occurrences (not iedit-replace-all-occurrences))
+  (if iedit-replace-all-occurrences
+      (message "Replacing all occurrences")
+    (message "Replacing only the current word.")))
 
 (provide 'iedit)
 
