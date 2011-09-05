@@ -64,6 +64,15 @@
  '(lambda ()
     (interactive) (popup-menu 'yank-menu))) ;; pop-up menu for kill-ring
 
+(define-key global-map (kbd "C-;") 'iedit-mode)
+;; workflow:
+;; 1. move marker to word
+;; 2. search for word: C-s
+;; 4. edit word using C-;
+
+(define-key isearch-mode-map (kbd "C-y") 'isearch-yank-kill)
+(define-key isearch-mode-map (kbd "C-;") 'iedit-mode)
+
 ;;by default, the next two keybindings are switched
 (global-set-key (kbd "C-a") 'back-to-indentation)
 

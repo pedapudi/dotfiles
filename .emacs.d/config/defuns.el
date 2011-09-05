@@ -103,6 +103,8 @@ If there is one running, switch to that buffer."
           (isearch-forward regexp-p no-recursive-edit)
         (setq isearch-initial-string (buffer-substring begin end))
         (add-hook 'isearch-mode-hook 'isearch-set-initial-string)
+	(add-hook 'isearch-mode-end-hook '(lambda ()
+					    (setq isearch-string nil)))
         (isearch-forward regexp-p no-recursive-edit)))))
 ;; end isearch for current token
 ;;;; end defuns
