@@ -35,6 +35,12 @@
 
 (global-set-key (kbd "C-%") 'bounce-sexp)
 
+(global-unset-key (kbd "C-h")) ; defaults to help (M-x help)
+(global-set-key (kbd "C-h") 'backward-delete-char)
+(global-set-key (kbd "C-S-h") 'backward-kill-word)
+
+(global-set-key (kbd "C-S-d") 'kill-word)
+
 (global-set-key (kbd "RET") 'newline-and-indent)
 
 (global-set-key (kbd "C-o") 'overwrite-mode) ; C-o by default does 'open-line
@@ -68,10 +74,10 @@
 ;; workflow:
 ;; 1. move marker to word
 ;; 2. search for word: C-s
-;; 3. edit word all occurrence of word: C-;
+;; 4. edit word using C-;
 
-(define-key isearch-mode-map (kbd "C-y") 'isearch-yank-kill) ;; let C-y work intuitively
-(define-key isearch-mode-map (kbd "C-;") 'iedit-mode) ;; drop to iedit-mode from isearch
+(define-key isearch-mode-map (kbd "C-y") 'isearch-yank-kill)
+(define-key isearch-mode-map (kbd "C-;") 'iedit-mode)
 
 ;;by default, the next two keybindings are switched
 (global-set-key (kbd "C-a") 'back-to-indentation)
