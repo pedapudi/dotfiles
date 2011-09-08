@@ -74,7 +74,7 @@
 ;; workflow:
 ;; 1. move marker to word
 ;; 2. search for word: C-s
-;; 4. edit word using C-;
+;; 3. edit all occurrences of word: C-;
 
 (define-key isearch-mode-map (kbd "C-y") 'isearch-yank-kill)
 (define-key isearch-mode-map (kbd "C-;") 'iedit-mode)
