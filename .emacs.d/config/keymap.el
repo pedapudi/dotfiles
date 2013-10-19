@@ -31,7 +31,8 @@
 
 (global-set-key [f11] 'toggle-fullscreen)
 
-(global-set-key (kbd "C-c C-k") 'copy-line)
+(global-unset-key (kbd "C-S-w")) ; replicates yank C-w
+(global-set-key (kbd "C-S-w") 'copy-line)
 
 (global-set-key (kbd "C-%") 'bounce-sexp)
 
@@ -65,6 +66,12 @@
 (global-set-key (kbd "C-s") 'isearch-forward-at-point)
 (global-set-key (kbd "C-S-s") 'isearch-forward)
 
+(global-unset-key (kbd "C-/")) ; C-/ by default does undo
+(global-set-key (kbd "C-/") 'goto-last-change)
+(global-set-key (kbd "C-S-/") 'goto-last-change-reverse)
+
+(global-set-key (kbd "M-s") 'mark-whole-word)
+
 (global-set-key
  (kbd "C-c C-y")
  '(lambda ()
@@ -84,4 +91,3 @@
 
 (global-set-key (kbd "M-m") 'beginning-of-line)
 ;;;; end set-key maps
-

@@ -24,9 +24,9 @@ not visiting a file"
              ((file-exists-p possible-tags-file) (throw 'found-it possible-tags-file))
              ((string= "/TAGS" possible-tags-file) (error "no tags file found"))
              (t (find-tags-file-r (directory-file-name parent))))))
-    
+
     (if (buffer-file-name)
-        (catch 'found-it 
+        (catch 'found-it
           (find-tags-file-r (buffer-file-name)))
       (error "buffer is not visiting a file"))))
 
@@ -40,16 +40,16 @@ otherwise raises an error."
 
 ;; begin next and previous window navigation
 (defun select-next-window ()
-  "Switch to the next window" 
+  "Switch to the next window"
   (interactive)
   (select-window (next-window)))
 
 (defun select-previous-window ()
-  "Switch to the previous window" 
+  "Switch to the previous window"
   (interactive)
   (select-window (previous-window)))
 
-;;end next and previous window navigation 
+;;end next and previous window navigation
 
 ;;begin fullscreen
 (defun toggle-fullscreen (&optional f)
@@ -63,12 +63,12 @@ otherwise raises an error."
 ;;end fullscreen
 
 ;;begin copy
- (defun copy-line (arg)
-      "Copy lines (as many as prefix argument) in the kill ring"
-      (interactive "p")
-      (kill-ring-save (line-beginning-position)
-                      (line-beginning-position (+ 1 arg)))
-      (message "%d line%s copied" arg (if (= 1 arg) "" "s")))
+(defun copy-line (arg)
+  "Copy lines (as many as prefix argument) in the kill ring"
+  (interactive "p")
+  (kill-ring-save (line-beginning-position)
+		  (line-beginning-position (+ 1 arg)))
+  (message "%d line%s copied" arg (if (= 1 arg) "" "s")))
 ;;end copy
 
 ;; begin go-to-terminal
@@ -107,5 +107,31 @@ If there is one running, switch to that buffer."
 					    (setq isearch-string nil)))
         (isearch-forward regexp-p no-recursive-edit)))))
 ;; end isearch for current token
-;;;; end defuns
 
+;; begin mark-whole-word
+(defun mark-whole-word (&optional arg allow-extend)
+    "Put point at beginning of current word, set mark at end."
+    (interactive "p\np")
+    (setq arg (if arg arg 1))
+    (if (and allow-extend
+             (or (and (eq last-command this-command) (mark t))
+                 (region-active-p)))
+        (set-mark
+         (save-excursion
+           (when (< (mark) (point))
+             (setq arg (- arg)))
+           (goto-char (mark))
+           (forward-word arg)
+           (point)))
+      (let ((wbounds (bounds-of-thing-at-point 'word)))
+        (unless (consp wbounds)
+          (error "No word at point"))
+        (if (>= arg 0)
+            (goto-char (car wbounds))
+          (goto-char (cdr wbounds)))
+        (push-mark (save-excursion
+                     (forward-word arg)
+                     (point)))
+        (activate-mark))))
+;; end mark-whole-word
+;;;; end defuns
