@@ -20,5 +20,11 @@
 ; anything to the initial frame if it's in your .emacs, since that file is
 ; read _after_ the initial frame is created.
 (add-hook 'after-make-frame-functions 'toggle-fullscreen)
+
+; enable fci-mode for all modes
+(add-hook 'after-change-major-mode-hook 'fci-mode)
+
+; delete trailing whitespace
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 ;;;; end hooks
 
