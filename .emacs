@@ -5,17 +5,22 @@
 (add-to-list 'load-path "~/.emacs.d/scala-mode")
 (add-to-list 'load-path "~/.emacs.d/fixme-mode")
 (add-to-list 'load-path "~/.emacs.d/iedit-mode")
+(add-to-list 'load-path "~/.emacs.d/fill-column-indicator")
+(add-to-list 'load-path "~/.emacs.d/goto-chg")
 ;(add-to-list 'load-path "~/.emacs.d/column-marker")
 ;;;;end adding paths
 
 ;;;; begin require statements
 (require 'byte-code-cache) ;; everything after this is compiled on load
-(require 'load-usr-config)
-(require 'color-theme-zenburn)
-(require 'scala-mode-auto)
-(require 'fixme-mode) ;NOTE when a new mode is added, need to edit fixme-mode.el
+(require 'load-usr-config) 
+(require 'color-theme-tangotango)
+; (require 'color-theme-zenburn) ;; back-up theme
+; (require 'scala-mode-auto)
+(require 'fill-column-indicator)
+(require 'fixme-mode) ;; NOTE when a new mode is added, need to edit fixme-mode.el
 (require 'browse-kill-ring) ;; provided with emacs-goodies.el
 (require 'iedit)
+(require 'goto-chg)
 ;;;; end require statements
 
 ;;begin loading customizations
@@ -23,7 +28,8 @@
 ;;end loading customizations
 
 ;; begin color theme
-(color-theme-zenburn)
+(color-theme-tangotango)
+;(color-theme-zenburn)
 ;; end color theme
 
 
