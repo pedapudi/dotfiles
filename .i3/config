@@ -168,8 +168,9 @@ for_window [title=".*[P|p]references.*"] floating enable # greedy heuristic
 # Applications to run on start-up
 exec gnome-sound-applet
 exec bluetooth-applet
+exec nm-applet
 exec gnome-screensaver
-# exec /path/to/i3-gnome-keyring-init.sh
 exec redshift
+# exec /path/to/i3-gnome-keyring-init.sh
 
 # exec_always feh --bg-scale /path/to/planks.jpg & # set background
