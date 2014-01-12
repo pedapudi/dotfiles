@@ -9,9 +9,12 @@
 (setq-default fill-column 80)
 (setq-default truncate-lines t)
 (setq tramp-default-method "ssh")
+(setq fci-rule-width 5)
+(setq fci-rule-color "#360000")
+(setq comment-auto-fill-only-comments t)
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
-(set-face-font 'default "ProggyCleanTT")
-(set-face-attribute 'default nil :height 120)
+(set-face-font 'default "Monospace")
+; (set-face-attribute 'default nil :height 90 :width 'normal)
 ;;;; end set default values
