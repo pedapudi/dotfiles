@@ -1,7 +1,8 @@
 if [ $TERM == eterm-color ]; then
-    PS1='\[\033[0;33m\]\W \[\033[0;31m\]$\[\033[0m\] '
+    PS1='\[\033[0;33m\]\W \[\033[0;31m\]\$(__git_ps1 "[%s]")$\[\033[0m\] '
 else
     prompt_command () {
+	git_base="\[\033[00;34m\]$(__git_ps1 "[%s]")\[\033[00;37m\]"
 	local rts=$?
 	local w=$(echo "${PWD/#$HOME/~}" | sed 's/.*\/\(.*\/.*\/.*\)$/\1/') # pwd max depth 3
 # pwd max length L, prefix shortened pwd with m
@@ -18,7 +19,7 @@ else
 	elif (( $rts >= 126 && $rts < 255)); then # caught ^C, invalid arg, etc
 	    local p="\[\033[1;30m\]>\[\033[0;36m\]>\[\033[1;36m\]>\[\033[m\]"
 	fi
-	PS1="\h[\l] ${w} ${p} "
+	PS1="\h[\l] ${w}${git_base} ${p} "
     }
     PROMPT_COMMAND=prompt_command
 fi
