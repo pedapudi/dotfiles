@@ -5,15 +5,15 @@
 
 ;; hook to calculate linenum string length to right justify the numbers
 ;; on the left. hook to avoid recalculating count-lines
-(add-hook 'linum-before-numbering-hook 
-	  (lambda () 
-	    (setq linum-format 
-		  (lambda (line) 
-		    (propertize 
-		     (format 
-		      (let ((w (length (number-to-string (count-lines (point-min) (point-max)))))) 
-			(concat "%" (number-to-string w) "d ")) line) 
-		     'face 
+(add-hook 'linum-before-numbering-hook
+	  (lambda ()
+	    (setq linum-format
+		  (lambda (line)
+		    (propertize
+		     (format
+		      (let ((w (length (number-to-string (count-lines (point-min) (point-max))))))
+			(concat "%" (number-to-string w) "d ")) line)
+		     'face
 		     'linum)))))
 
 ; Make new frames fullscreen by default. Note: this hook doesn't do
@@ -26,5 +26,13 @@
 
 ; delete trailing whitespace
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+(add-hook 'window-configuration-change-hook
+          (lambda () (reset-fringe)))
+
+(add-hook 'after-change-major-mode-hook (lambda () (reset-fringe)))
+
+;; If you want to hide the mode-line in every buffer by default
+;; (add-hook 'after-change-major-mode-hook 'hidden-mode-line-mode)
 ;;;; end hooks
 
