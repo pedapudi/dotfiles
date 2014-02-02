@@ -51,6 +51,7 @@
 (big-fringe-mode 1)
 ; (hidden-mode-line-mode 1)
 (display-time-mode)
+
 (when (require 'browse-kill-ring nil 'noerror)
   (browse-kill-ring-default-keybindings))
 ;;;; end enabling/disabling of operating modes

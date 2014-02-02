@@ -12,9 +12,12 @@
 		    (propertize
 		     (format
 		      (let ((w (length (number-to-string (count-lines (point-min) (point-max))))))
-			(concat "%" (number-to-string w) "d ")) line)
+			(concat "%" (number-to-string w) "d")) line)
 		     'face
 		     'linum)))))
+
+; color for comint-mode
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
 ; Make new frames fullscreen by default. Note: this hook doesn't do
 ; anything to the initial frame if it's in your .emacs, since that file is
@@ -23,6 +26,7 @@
 
 ; enable fci-mode for all modes
 (add-hook 'after-change-major-mode-hook 'fci-mode)
+(add-hook 'term-mode-hook (lambda () (setq fci-mode -1))) ; except for ansi-term
 
 ; delete trailing whitespace
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
