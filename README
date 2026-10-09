@@ -1,0 +1,9 @@
+Personal configuration files and reusable assistant skills.
+
+Skills
+------
+
+The writing skill is in skills/writing/SKILL.md. It defines rules for
+clear, self-contained prose. The reference directory contains editing
+examples and a verification checklist. Copy the entire skills/writing
+directory into your assistant's skills directory to include these references.
